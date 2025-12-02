@@ -1,5 +1,43 @@
 {% extends "home.html" %}
 
 {% block content %}
+<style>
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: white;
+        box-sizing: border-box;
+    }
 
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        outline: none;
+        border-color: #666;
+    }
+</style>
+
+<!-- Admin Login Content -->
+<div class="main-container">
+    <div class="content-box">
+        <h1>Administrator Login</h1>
+        
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="submit-button">LOGIN</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

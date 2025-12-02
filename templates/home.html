@@ -120,6 +120,7 @@
         <a href="{{ url_for('reservations') }}">Reservations</a>
     </nav>
 
+    {% block content %}
     <!-- Main Content -->
     <div class="main-container">
         <div class="content-box">
@@ -129,7 +130,7 @@
             </p>
         </div>
 
-    <form action="#" method="post">
+    <form id="menu-form" action="#" method="post" onsubmit="handleMenuSubmit(event)">
         <div class="form-group">
             <label for="menu-option">Menu Option:</label>
             <select id="menu-option" name="menu-option" required>
@@ -140,5 +141,19 @@
         </div>
         <button type="submit" class="submit-button">Submit</button>
     </form>
+
+    <script>
+        function handleMenuSubmit(event) {
+            event.preventDefault();
+            const selectedOption = document.getElementById('menu-option').value;
+            
+            if (selectedOption === 'reservation') {
+                window.location.href = "{{ url_for('reservations') }}";
+            } else if (selectedOption === 'admin') {
+                window.location.href = "{{ url_for('admin') }}";
+            }
+        }
+    </script>
+    {% endblock %}
 </body>
 </html>
