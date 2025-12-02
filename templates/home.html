@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Reservation System - Home</title>
+    <style>
+        .post {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3
+        }
+
+        nav a {
+            color: #d64161;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+
+        .alert {
+            padding: 20px;
+            margin: 5px;
+            color: #970020;
+            background-color: #ffd5de;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 60px);
+            padding: 40px 20px;
+        }
+
+        .content-box {
+            background-color: white;
+            border: 2px solid #000000;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-option {
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .welcome-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #000000;
+            font-weight: normal;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        .submit-button {
+            background-color: #808080;
+            color: white;
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #666666;
+        }
+
+        .submit-button:active {
+            background-color: #555555;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('admin') }}">Admin</a>
+        <a href="{{ url_for('reservations') }}">Reservations</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-box">
+            <h1>IT-4320 Trip Reservation System</h1>
+            <p class="welcome-text">
+                Welcome to the Reservation System. Choose an option.
+            </p>
+        </div>
+
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="menu-option">Menu Option:</label>
+            <select id="menu-option" name="menu-option" required>
+                <option value="">Choose an Option</option>
+                <option value="reservation">Make a Reservation</option>
+                <option value="admin">Log in as Admin</option>
+            </select>
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</body>
+</html>
