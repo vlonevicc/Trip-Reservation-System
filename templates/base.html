@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Reservation System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        nav {
+            background: white;
+            padding: 10px;
+            border-bottom: 2px solid black;
+        }
+
+        nav a {
+            margin-right: 25px;
+            font-size: 20px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .content-box {
+            background: white;
+            border: 2px solid black;
+            padding: 30px;
+            width: 600px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        .submit-button {
+            background-color: #808080;
+            color: white;
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #666666;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('reservations') }}">Reservations</a>
+    <a href="{{ url_for('admin') }}">Admin</a>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

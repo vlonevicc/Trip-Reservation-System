@@ -1,5 +1,37 @@
-{% extends "home.html" %}
+{% extends "base.html" %}
 
 {% block content %}
+<div class="main-container">
+    <div class="content-box">
+        <h1>Make a Reservation</h1>
 
+        {% if message %}
+            <p style="color: green;">{{ message }}</p>
+        {% endif %}
+
+        <form method="post">
+            <div class="form-group">
+                <label>First Name:</label>
+                <input type="text" name="first_name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Last Name:</label>
+                <input type="text" name="last_name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Seat Row (1–12):</label>
+                <input type="number" name="seat_row" min="1" max="12" required>
+            </div>
+
+            <div class="form-group">
+                <label>Seat Column (1–4):</label>
+                <input type="number" name="seat_col" min="1" max="4" required>
+            </div>
+
+            <button type="submit" class="submit-button">Reserve Seat</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
