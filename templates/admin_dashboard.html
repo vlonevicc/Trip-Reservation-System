@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-container">
+    <div class="content-box" style="width: 800px;">
+        <h1>Admin Dashboard</h1>
+
+        <h2>Total Sales: ${{ total_sales }}</h2>
+
+        <h2>Seating Chart</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+                <th>Row</th>
+                <th colspan="4">Seats (1–4)</th>
+            </tr>
+            {% for row in seating %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                {% for seat in row %}
+                    {% if seat %}
+                        <td style="background-color: #ff9e9e;">Taken</td>
+                    {% else %}
+                        <td style="background-color: #b6ffb3;">Available</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br><br>
+
+        <h2>Reservations</h2>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+                <th>Name</th>
+                <th>Seat</th>
+                <th>Ticket</th>
+                <th>Action</th>
+            </tr>
+            {% for r in reservations %}
+            <tr>
+                <td>{{ r.passengerName }}</td>
+                <td>Row {{ r.seatRow }}, Col {{ r.seatColumn }}</td>
+                <td>{{ r.eTicketNumber }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_reservation', res_id=r.id) }}">
+                        <button class="submit-button" style="background-color:red;">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
+{% endblock %}

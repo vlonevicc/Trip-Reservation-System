@@ -56,15 +56,36 @@ def admin():
 
         conn = get_db_connection()
         admin = conn.execute(
-            "SELECT * FROM admins WHERE username = ? AND password = ?", 
+            "SELECT * FROM admins WHERE username = ? AND password = ?",
             (username, password)
         ).fetchone()
+
+        if not admin:
+            conn.close()
+            return render_template('admin.html', error="Invalid username or password.")
+
+        # Load reservations and seating chart
+        reservations = conn.execute("SELECT * FROM reservations").fetchall()
+
+        # Build seating matrix (True = taken)
+        seating = [[False for _ in range(4)] for _ in range(12)]
+        cost_matrix = get_cost_matrix()
+        total_sales = 0
+
+        for r in reservations:
+            row = r['seatRow'] - 1
+            col = r['seatColumn'] - 1
+            seating[row][col] = True
+            total_sales += cost_matrix[row][col]
+
         conn.close()
 
-        if admin:
-            return "Admin login successful! (Dashboard goes here)"
-        else:
-            error = "Invalid username or password."
+        return render_template(
+            "admin_dashboard.html",
+            reservations=reservations,
+            seating=seating,
+            total_sales=total_sales
+        )
 
     return render_template('admin.html', error=error)
 
@@ -96,6 +117,15 @@ def reservations():
         message = f"Reservation successful! Your ticket code is: {e_ticket}"
 
     return render_template('reservations.html', message=message)
+
+#delete reservation
+@app.route('/delete/<int:res_id>', methods=['POST'])
+def delete_reservation(res_id):
+    conn = get_db_connection()
+    conn.execute("DELETE FROM reservations WHERE id = ?", (res_id,))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('admin'))
 
 
 app.run(port=5003)
