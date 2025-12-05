@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -6,11 +7,16 @@ app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = '1234'
 
 
-#db connection
 def get_db_connection():
-    conn = sqlite3.connect('reservations.db')
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    db_path = os.path.join(base_dir, "final_project_files", "reservations.db")
+
+    conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn
+
 
 
 #cost matrix
