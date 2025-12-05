@@ -127,5 +127,4 @@ def delete_reservation(res_id):
     conn.close()
     return redirect(url_for('admin'))
 
-
 app.run(port=5003)
